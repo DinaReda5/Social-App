@@ -1,0 +1,74 @@
+====================================================validation===================================
+Name:/[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/
+userName:/[a-zA-Z\u0621-\u064Aء-ئ][^#&<>\"~;$^%{}?]{1,20}$/    يقبل عربي  وانجليزي
+password:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+phoneNumberEgypt=> /^01[0125][0-9]{8}$/
+=========================================================================================
+export const headers = {
+    headers: joi.object({
+        'cache-control': joi.string(),
+        'postman-token': joi.string(),
+        'content-type': joi.string(),
+        'content-length': joi.string(),
+        host: joi.string(),
+        'user-agent': joi.string(),
+        accept: joi.string(),
+        'accept-encoding': joi.string(),
+        connection: joi.string(),
+        token: joi.string().required()
+    }),
+
+}
+=========================================================================================
+export const generalFiled = {
+    email: joi.string().email({ tlds: { allow: ["outlook", "com"] }, minDomainSegments: 2 }).required(),
+    password: joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/).required(),
+    rePassword: joi.string().valid(joi.ref("password")).required(),
+    file: joi.object({
+ 	size: joi.number().positive().required(),
+        path: joi.string().required(),
+        filename: joi.string().required(),
+        destination: joi.string().required(),
+        mimetype: joi.string().required(),
+        encoding: joi.string().required(),
+        originalname: joi.string().required(),
+        fieldname: joi.string().required())
+};
+==================================================== sending Email  =================================   
+
+1- approve less sequre apps
+  let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                port: process.env.PORT || 587,
+                secure: false, // true for 465, false for other ports
+                auth: {
+                    user: 'hostEmail', // generated ethereal user
+                    pass: 'hostPassword', // generated ethereal password
+                },
+            });
+            let info = await transporter.sendMail({
+                from: 'hostEmail', // sender address
+                to: req.body.email, // list of receivers email
+                subject: "Hello ✔", // Subject line
+                text: "Hello world?", // plain text body
+                html: "<b>Hello world?</b>", // html body
+            });
+
+=================================get full url ================================================
+FullURL => req.protocol + '://' + req.headers.host + '/DisplayProfile/' + req.userID
+=====================================================================================================
+
+uploadServer
+*DB(online)
+1- port = process.env.PORT 
+2-packageJson
+3-"main": "index.js",
+4-"scripts": {
+    "start": "node app.js"
+  }
+5-"engines": {
+    "node":"18.x"
+  },
+6-cors
+7-file vercel 
+

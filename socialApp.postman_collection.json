@@ -1,0 +1,813 @@
+{
+	"info": {
+		"_postman_id": "a98251b4-05e7-464f-808c-9024b04a90cc",
+		"name": "socialApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36024768"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "signUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "dina",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "dr@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Dina@123455",
+									"type": "text"
+								},
+								{
+									"key": "cPassword",
+									"value": "Dina@123455",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "01234567899",
+									"type": "text"
+								},
+								{
+									"key": "attachment",
+									"type": "file",
+									"src": [
+										"/E:/wallpaper/Google Photos.jpeg",
+										"/E:/wallpaper/wallpaperflare.com_wallpaper (1).jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/users/signUp",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"signUp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "confirmEmail",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"dr473079@gmail.com\",\r\n    \"code\":\"1240\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/confirmEmail",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"confirmEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dr@gmail.com\",\r\n    \"password\": \"Dina@123455\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refreshToken",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkRpbmE1NUBnbWFpbC5jb20iLCJpZCI6IjY3YzkyNTBmYmE5Mjk3YWY4YWVhN2Y1MSIsImlhdCI6MTc0MTIzNTQ5NywiZXhwIjoxNzQxODQwMjk3fQ.UG82tmWbVIkE8khTJjAmCnLX_5j26Vi6ilMaUadBjHY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/refreshToken",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"refreshToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgetPaasword",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"dr473079@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/forgetPassword",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"forgetPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resetPassword",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"dr473079@gmail.com\",\r\n    \"code\":\"6335\",\r\n    \"newPassword\":\"Eman@12345\",\r\n    \"cPassword\":\"Eman@12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/resetPassword",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"resetPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProfile",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"accept": true,
+							"user-agent": true,
+							"host": true,
+							"content-length": true,
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRyNDczMDc5QGdtYWlsLmNvbSIsImlkIjoiNjdjMTljODk3MjM5YmRhZTYwN2M3OGFkIiwiaWF0IjoxNzQwNzcwNjc3LCJleHAiOjE3NDA4NTcwNzd9.isbpdkUIPTpk1v2yVH5VwV2KHGf6RsTw5HuYBVwOXwI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachment",
+									"type": "file",
+									"src": "/E:/wallpaper/wallpaperflare.com_wallpaper (1).jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/users/updateProfile",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"updateProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePassword",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true,
+							"accept": true,
+							"host": true,
+							"accept-encoding": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRyNDczMDc5QGdtYWlsLmNvbSIsImlkIjoiNjdjMTljODk3MjM5YmRhZTYwN2M3OGFkIiwiaWF0IjoxNzQwNzcwNjc3LCJleHAiOjE3NDA4NTcwNzd9.isbpdkUIPTpk1v2yVH5VwV2KHGf6RsTw5HuYBVwOXwI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\":\"Dina@12345\",\r\n    \"newPassword\":\"Dina@12345\",\r\n    \"cPassword\":\"Dina@12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/updatePassword",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"updatePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "shareProfile",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkRpbmE1NUBnbWFpbC5jb20iLCJpZCI6IjY3YzkyNTBmYmE5Mjk3YWY4YWVhN2Y1MSIsImlhdCI6MTc0MTIzNTQ5NywiZXhwIjoxNzQxMzIxODk3fQ.8a-mKgr44XxeZ_Ic6sXN3TNSiM7dnjFWNC7wbTbALTs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/users/profile/67c92621ba9297af8aea7f5c",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"profile",
+								"67c92621ba9297af8aea7f5c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateEmail",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRyNDczMDc5QGdtYWlsLmNvbSIsImlkIjoiNjdjOTI2MjFiYTkyOTdhZjhhZWE3ZjVjIiwiaWF0IjoxNzQxNTY4Nzc3LCJleHAiOjE3NDE2NTUxNzd9.ZQWh_-8yImjj2H7WxUBh8hS3h1abBzMWgNwIG7rrt5k",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"dr473079@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/updateEmail",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"updateEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "replaceEmail",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRyNDczMDc5QGdtYWlsLmNvbSIsImlkIjoiNjdjOTI2MjFiYTkyOTdhZjhhZWE3ZjVjIiwiaWF0IjoxNzQxNTY4Nzc3LCJleHAiOjE3NDE2NTUxNzd9.ZQWh_-8yImjj2H7WxUBh8hS3h1abBzMWgNwIG7rrt5k",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldCode\":\"9783\",\r\n    \"newCode\":\"2109\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/replaceEmail",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"replaceEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admindashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "admin eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRyQGdtYWlsLmNvbSIsImlkIjoiNjdkZDVhOTg1MmEyZTNhZWMyYTYwMjk5IiwiaWF0IjoxNzQzMzI5MzYzLCJleHAiOjE3NDM0MTU3NjN9.cXdhLycT3aITwbK7O-4gMqHlovudI1Lb7pKVmBjD2AA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/users/dashboard",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateRole",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "admin eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRyQGdtYWlsLmNvbSIsImlkIjoiNjdkZDVhOTg1MmEyZTNhZWMyYTYwMjk5IiwiaWF0IjoxNzQzMzI5MzYzLCJleHAiOjE3NDM0MTU3NjN9.cXdhLycT3aITwbK7O-4gMqHlovudI1Lb7pKVmBjD2AA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\":\"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/dashboard/updateRole/67dd1cb53082b072c63d2dd2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"dashboard",
+								"updateRole",
+								"67dd1cb53082b072c63d2dd2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "posts",
+			"item": [
+				{
+					"name": "createPost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpbmFAZ21haWwuY29tIiwiaWQiOiI2N2RkMWNiNTMwODJiMDcyYzYzZDJkZDIiLCJpYXQiOjE3NDI1NDQxNDEsImV4cCI6MTc0MjYzMDU0MX0.CEbcGqZf2b5Vir0FoiH0WkO-WbGWEKs97U26bMpdw44",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "this is post 2",
+									"type": "text"
+								},
+								{
+									"key": "attachments",
+									"type": "file",
+									"src": [
+										"/E:/wallpaper/Work day ,stay hydrated 😀.jpeg",
+										"/E:/wallpaper/Untitled.png"
+									],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/posts/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePost",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpbmE1NUBnbWFpbC5jb20iLCJpZCI6IjY3YzkyNTBmYmE5Mjk3YWY4YWVhN2Y1MSIsImlhdCI6MTc0MTU3MzAxNywiZXhwIjoxNzQxNjU5NDE3fQ.6FBP9tDM8Qvphn2EvJ8xNh-z8vd53xx507rHo_Eq-X0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "ay 7aga",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "attachments",
+									"type": "file",
+									"src": [
+										"/E:/wallpaper/download.jpeg",
+										"/E:/wallpaper/Work aesthetic desktop wallpaper.jpeg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/posts/67ce4be1b15d8adf4e95abd6",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"67ce4be1b15d8adf4e95abd6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "freezePost",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpbmE1NUBnbWFpbC5jb20iLCJpZCI6IjY3YzkyNTBmYmE5Mjk3YWY4YWVhN2Y1MSIsImlhdCI6MTc0MTc0NjY2NSwiZXhwIjoxNzQxODMzMDY1fQ.U37MFJaU-B6Lc-MqaoqO3xAr3YLzSG0Dbe5LNPqdjy0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/posts/freezePost/67c29781468d7e9c008736a3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"freezePost",
+								"67c29781468d7e9c008736a3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unfreezePost",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "admin eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpbmE1NUBnbWFpbC5jb20iLCJpZCI6IjY3YzkyNTBmYmE5Mjk3YWY4YWVhN2Y1MSIsImlhdCI6MTc0MTc0NzYyNywiZXhwIjoxNzQxODM0MDI3fQ.CGgvf11oe54zXgfIDgFcmsNoC8bnbIP4pqJaku-8GsE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/posts/unfreezePost/67ce4be1b15d8adf4e95abd6",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"unfreezePost",
+								"67ce4be1b15d8adf4e95abd6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "likePost",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "admin eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpbmE1NUBnbWFpbC5jb20iLCJpZCI6IjY3YzkyNTBmYmE5Mjk3YWY4YWVhN2Y1MSIsImlhdCI6MTc0MTc0NzYyNywiZXhwIjoxNzQxODM0MDI3fQ.CGgvf11oe54zXgfIDgFcmsNoC8bnbIP4pqJaku-8GsE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/posts/likePost/67ce4be1b15d8adf4e95abd6",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"likePost",
+								"67ce4be1b15d8adf4e95abd6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPosts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpbmFAZ21haWwuY29tIiwiaWQiOiI2N2RkMWNiNTMwODJiMDcyYzYzZDJkZDIiLCJpYXQiOjE3NDI2Mjk0NzAsImV4cCI6MTc0MjcxNTg3MH0.yg35K6JfUAODjsvdM-DR_k9BXKtbETmzdBOF-_o-eaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost:3000/posts/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comments",
+			"item": [
+				{
+					"name": "createComment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpbmFAZ21haWwuY29tIiwiaWQiOiI2N2RkMWNiNTMwODJiMDcyYzYzZDJkZDIiLCJpYXQiOjE3NDI2Mjk0NzAsImV4cCI6MTc0MjcxNTg3MH0.yg35K6JfUAODjsvdM-DR_k9BXKtbETmzdBOF-_o-eaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "last replay",
+									"type": "text"
+								},
+								{
+									"key": "attachments",
+									"type": "file",
+									"src": [
+										"/E:/wallpaper/Untitled.png",
+										"/E:/wallpaper/Work day ,stay hydrated 😀.jpeg"
+									],
+									"disabled": true
+								},
+								{
+									"key": "onModel",
+									"value": "Comment",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/posts/67de7ea86a3085b47da3413f/comments/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"67de7ea86a3085b47da3413f",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateComment",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpbmFAZ21haWwuY29tIiwiaWQiOiI2N2RkMWNiNTMwODJiMDcyYzYzZDJkZDIiLCJpYXQiOjE3NDI1NTgyNzcsImV4cCI6MTc0MjY0NDY3N30.-YQpLpuXVu1mNRdrI-nx7yHMv3S3fMouOaGrmvqHvbA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "ay 7aga5",
+									"type": "text"
+								},
+								{
+									"key": "attachments",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/posts/67dd1d6a3082b072c63d2ddb/comments/67dd2014a4c78dd30bd3bb32",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"67dd1d6a3082b072c63d2ddb",
+								"comments",
+								"67dd2014a4c78dd30bd3bb32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "freezeComment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "admin eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRyQGdtYWlsLmNvbSIsImlkIjoiNjdkZDVhOTg1MmEyZTNhZWMyYTYwMjk5IiwiaWF0IjoxNzQyNTU5OTkwLCJleHAiOjE3NDI2NDYzOTB9.GT168uQlDrgOcqyMfNt8dF3U8LDxzuakMjnYT334zl4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "ay 7aga5",
+									"type": "text"
+								},
+								{
+									"key": "attachments",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/posts/67dd1d643082b072c63d2dd8/comments/67dd1fe700f439be62185fbc",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"67dd1d643082b072c63d2dd8",
+								"comments",
+								"67dd1fe700f439be62185fbc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
