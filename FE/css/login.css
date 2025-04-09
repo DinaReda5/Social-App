@@ -1,0 +1,46 @@
+/* ///////////////////////////////////// */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  
+}
+body{
+    background: linear-gradient(90deg,rgb(7, 31, 16)0%,rgb(20, 86, 50)  50%, rgb(0, 17, 13) 100%);
+    
+}
+ 
+.myForm{
+    border-radius: 20px;
+    /* margin-top: 10px !important; */
+    width: 50% !important;
+    background-color: white !important;
+    padding: 50px;
+}
+
+.btn-primary{
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg,rgba(37,211,102,1)0%,  rgb(29, 167, 79)  50%, rgba(0,168,132,1) 100%);
+}
+.form-control{
+    color: rgba(0,0,0,.87);
+    border-bottom-color: rgba(0,0,0,.42);
+    box-shadow: none !important;
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 4px 4px 0 0;
+    }
+ h4{
+    font-size: 2rem !important;
+    font-weight: 600;
+ }  
+ .form-label{
+    font-weight: 500 !important;
+ }
+@media only screen and (max-width: 1000px) {
+    .myForm {
+        width: 100% !important;
+    }
+  }
