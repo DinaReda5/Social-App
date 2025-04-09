@@ -8,10 +8,8 @@ import { accessRoles, authentication, authorization } from "../../middleware/aut
 const userRouter = Router()
 // userRouter.post("/signUp", validation(UV.signUpSchema), US.signUp)
 // userRouter.post("/signUp", multerDisk([...fileTypes.image, ...fileTypes.video], "images").single("attachment"), US.signUp)
-// userRouter.post("/signUp", multerHost([...fileTypes.image, ...fileTypes.video]).single("attachment"), US.signUp)
-userRouter.post("/signUp",
-    multerHost([...fileTypes.image, ...fileTypes.video]).array("attachment", 2),
-    validation(UV.signUpSchema), US.signUp)
+userRouter.post("/signUp", multerHost([...fileTypes.image, ...fileTypes.video]).single("attachment"),validation(UV.signUpSchema), US.signUp)
+  //  userRouter.post("/signUp", multerHost([...fileTypes.image, ...fileTypes.video]).array("attachment", 2),validation(UV.signUpSchema), US.signUp)
 
 // userRouter.post("/signUp", multerDisk([...fileTypes.image, ...fileTypes.video], "images").array("attachments"), US.signUp)
 // userRouter.post("/signUp", multerDisk([...fileTypes.image, ...fileTypes.video], "images").fields([
@@ -37,8 +35,9 @@ userRouter.patch("/updatePassword", validation(UV.updatePasswordSchema), authent
 userRouter.patch("/updateEmail", validation(UV.updateEmailSchema), authentication, US.updateEmail)
 userRouter.patch("/replaceEmail", validation(UV.replaceEmailSchema), authentication, US.replaceEmail)
 userRouter.get("/dashboard", authentication,authorization([accessRoles.admin,accessRoles.superAdmin]), US.dashboard)
-userRouter.patch("/dashboard/updateRole/:userId", authentication,authorization([accessRoles.admin,accessRoles.superAdmin]), US.updateRole)
-
+userRouter.patch("/dashboard/updateRole/:userId", authentication, authorization([accessRoles.admin, accessRoles.superAdmin]), US.updateRole)
+userRouter.patch("/add/:userId",authentication,US.addFriend)
+userRouter.get("/profile",authentication,US.getProfile); 
 
 
 

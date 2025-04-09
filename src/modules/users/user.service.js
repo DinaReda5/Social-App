@@ -1,5 +1,6 @@
+import * as dbService from "../../DB/dbService.js";
 import postModel from "../../DB/models/post.model.js";
-import userModel from "../../DB/models/user.model.js";
+import {userModel} from "../../DB/models/user.model.js";
 import {
   accessRoles,
   decodedToken,
@@ -34,9 +35,9 @@ export const signUp = asyncHandler(async (req, res, next) => {
   //   imgPaths.push(path.resolve(file.path))
   // }
   let arrPaths = [];
-  for (const file of req.files) {
+  // for (const file of req.files) {
     const { secure_url, public_id } = await cloudinary.uploader.upload(
-      file.path,
+      req.file.path,
       {
         folder: "social-app/users",
         // ,public_id
@@ -46,7 +47,7 @@ export const signUp = asyncHandler(async (req, res, next) => {
       }
     );
     // arrPaths.push({ secure_url, public_id })
-  }
+  // }
   // encrypt phone
   const encryptedePhone = await encrypt({
     key: phone,
@@ -60,14 +61,25 @@ export const signUp = asyncHandler(async (req, res, next) => {
   //send email
   // eventEmitter.emit("sendEmail", { email });
   //send DB
-  const user = await userModel.create({
+  // const user = await userModel.create({
+  //   name,
+  //   email,
+  //   password: hash,
+  //   phone: encryptedePhone,
+  //   // coverImage: arrPaths,
+  //   // image:{secure_url,public_id}
+  // });
+  const user = await dbService.create({
+    model: userModel, query: {
     name,
     email,
     password: hash,
     phone: encryptedePhone,
     // coverImage: arrPaths,
-    // image:{secure_url,public_id}
-  });
+    image:{secure_url,public_id}
+    }
+  })
+  
   return res.status(201).json({ msg: "done and check your email", user });
 });
 // ------------------------------confirmEmail----------------------------------
@@ -100,17 +112,19 @@ export const login = asyncHandler(async (req, res, next) => {
     provider: "system",
   });
   if (!user) {
-    return next(
-      new Error("email not exists or the user not confirmed yet", {
-        cause: 404,
-      })
-    );
+    // return next(
+    //   new Error("email not exists or the user not confirmed yet", {
+    //     cause: 404,
+    //   })
+    // );
+    return res.json({message:"email not exists or the user not confirmed yet"})
   }
 
   if (!(await Compare({ key: password, hashed: user.password }))) {
-    return next(new Error("the password is not correct", { cause: 400 }));
+    // return next(new Error("the password is not correct", { cause: 400 }));
+    return res.json({message:"the password is not correct"})
   }
-  const accessToken = await generateToken({
+  const access_token = await generateToken({
     payload: { email, id: user._id },
     SECRET_KEY:
       user.role == accessRoles.user
@@ -127,7 +141,7 @@ export const login = asyncHandler(async (req, res, next) => {
         : process.env.REFRESH_SIGNATURE_ADMIN,
     option: { expiresIn: "1w" },
   });
-  return res.status(201).json({ msg: "done", accessToken, refreshToken });
+  return res.status(201).json({ message: "done", data:{access_token, refreshToken} });
 });
 // ------------------------------refreshToken----------------------------------
 export const refreshToken = asyncHandler(async (req, res, next) => {
@@ -318,3 +332,38 @@ export const updateRole = asyncHandler(async (req, res, next) => {
 }
   return res.status(201).json({ msg: "done" ,user});
 });
+// ------------------------------addFriend----------------------------------
+export const addFriend = asyncHandler(async (req, res, next) => {
+  const { userId } = req.params;
+  const user = await userModel.findOneAndUpdate(
+    { _id: userId, isDeleted: false },
+    { $addToSet: { friends: req.user._id } },
+    { new: true }
+  );
+  if (!user) {
+    return next(new Error("email not exist or deleted", { cause: 404 }));
+  }
+  await userModel.findOneAndUpdate(
+    { _id: req.user._id, isDeleted: false },
+    { $addToSet: { friends: userId } },
+    { new: true }
+  );
+ 
+  return res.status(201).json({ msg: "done" ,user});
+});
+// ------------------------------getProfile----------------------------------
+export const getProfile = asyncHandler(async (req, res, next) => {
+ 
+  const user = await userModel.findOne(
+    { _id: req.user._id, isDeleted: false }
+  ).populate([
+    { path: "friends" }
+  ]);
+  if (!user) {
+    return next(new Error("email not exist or deleted", { cause: 404 }));
+  }
+
+ 
+  return res.status(201).json({ msg: "done" ,user});
+});
+

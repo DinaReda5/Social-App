@@ -20,7 +20,7 @@ export const signUpSchema = joi
       .string()
       .regex(/^01[0125][0-9]{8}$/)
       .required(),
-    files: generalRules.file,
+    file: generalRules.file,
     // .required()
   })
   .required();

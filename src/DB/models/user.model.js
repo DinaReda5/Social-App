@@ -71,16 +71,18 @@ const userSchema = new mongoose.Schema({
     tempEmail: String,
     otpPassword:String,
     viewers: [{
-        userId: { type: mongoose.Types.ObjectId, ref: "User" },
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         time:[Date]
     }],
     updatedBy: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:"User"
-    }
+    },
+    friends: [{type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     
 }, {
     timestamps: true
 })
-const userModel = mongoose.models.User || mongoose.model("User", userSchema)
-export default userModel
+export const userModel = mongoose.models.User || mongoose.model("User", userSchema)
+ 
+export const connectionUser =new Map()

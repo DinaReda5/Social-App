@@ -1,7 +1,7 @@
 import { EventEmitter } from "events";
 import { sendEmail } from "../../service/sendEmail.js";
 import { nanoid, customAlphabet } from 'nanoid'
-import userModel from "../../DB/models/user.model.js";
+import {userModel} from "../../DB/models/user.model.js";
 import { Hash } from "../hash/hash.js";
 import {Html} from "../../service/template-email.js"
 export const eventEmitter = new EventEmitter();

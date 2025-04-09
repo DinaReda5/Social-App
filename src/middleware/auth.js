@@ -1,5 +1,5 @@
 
-import userModel from "../DB/models/user.model.js";
+import {userModel} from "../DB/models/user.model.js";
 import { asyncHandler } from "../utilits/error/index.js";
 import { verifyToken } from "../utilits/index.js";
 
@@ -69,4 +69,42 @@ export const authorization = (accessRoles = []) => {
     }
     next();
   });
+};
+
+
+export const authSocket = async ({socket}) => {
+
+  const [prefix, token] = socket?.handshake?.auth?.authorization?.split(" ") || [];
+  
+  if (!prefix || !token) {
+    return { message: "invalid token", statusCode: 401 };
+  }
+  let ACCESS_SIGNATURE = undefined;
+  if (prefix === process.env.PREFIX_TOKEN_ADMIN) {
+    ACCESS_SIGNATURE = process.env.ACCESS_SIGNATURE_ADMIN;
+  } else if (prefix === process.env.PREFIX_TOKEN_USER) {
+    ACCESS_SIGNATURE = process.env.ACCESS_SIGNATURE_USER;
+  } else {
+    return { message: "ivalid token prefix", statusCode: 401 };
+  }
+
+  const decoded = await verifyToken({
+    token,
+    SIGNATURE_SEND_EMAIL:ACCESS_SIGNATURE
+  });
+
+  if (!decoded?.id) {
+    return { message: "invalid token payload", statusCode: 403 };
+
+  }
+  const user = await userModel.findById(decoded.id);
+  if (!user) {
+    return { message: "user not found", statusCode: 404 };
+
+  }
+  if (parseInt(user?.changePasswordAt?.getTime() / 1000) >= decoded.iat) {
+    return { message: "token expire login again", statusCode: 401 };
+  }
+ 
+return {user,statusCode:200}
 };
